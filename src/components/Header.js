@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom";
 import Nav from "./Nav";
 
-const isHeader = true;
+const Header = () => {
+  const isHeader = true;
 
-function Header() {
   return (
-      <header className="header">
+    <header className="header">
+      <Link to="/">
         <h1 className="header__title">Aspen</h1>
-        <Nav isHeader={isHeader} /> 
-      </header>
+      </Link>
+      <Nav isHeader={isHeader} />
+    </header>
   );
 };
 
-export default Header
+export default Header;

@@ -1,19 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
- function ItemListContainer(props){
+const ItemListContainer = () => {
 
-  let[counter, setCounter]=useState(0);
+  //const [load, setLoad] = useState(false);
+  const [productos, setProductos] = useState([]);
+  const{id} = useParams();
 
-  const handleClick = () => {
-    setCounter(counter+1);
-  };
+  useEffect(() => {
+    //const pedido = fetch("https://fakestoreapi.com/products")
 
-  return (<>
-    {props.greeting}
-    <p>Contador:{counter}</p>
-    <button onClick={handleClick}>Sumar</button>
+    //pedido
+    //  .then((respuesta)=>{
+    //    const productos = respuesta.json();
+    //    return productos;
+    //  })
+    //  .then((productos)=>{
+    //    setProductos(productos);
+    //    setLoad(true);
+    //  })
+    //  .catch((error)=>{
+    //    console.log(error)
+    //  })
+    const url = "https://fakestoreapi.com/products";
+    fetch(url)
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+      setProductos([])
+      if(id===undefined){
+        setProductos(resultado)
+      }else{
+        setProductos(resultado.filter((producto)=> producto.category === id))
+      }
+    })
+
+  
+  }, [id])
+  
+
+  return (
+    <>
+      {/* {load ? "Productos Cargados!!" : "Cargando Productos..."} */}
+      <ItemList productos={productos}/>
     </>
-  )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;

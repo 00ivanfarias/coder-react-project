@@ -1,15 +1,16 @@
-import Nav from "./Nav"
+import Nav from './Nav'
 
-function Footer() {
+const Footer = () => {
+
   return (
-      <footer className="footer">
-        <Nav 
-        textLinkFooter="Instagram" 
-        hrefLinkFooter="https://www.instagram.com"
-        />
-        <p>Copyright &copy; 2023</p>
-      </footer>
-  );
-};
+    <footer className='footer'>
+      <Nav 
+      textLinkFooter="Instagram" 
+      hrefLinkFooter="https://www.instagram.com/"
+      />
+      <p>Corytight &copy; 2023</p>
+    </footer>
+  )
+}
 
 export default Footer
